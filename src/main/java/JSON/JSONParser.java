@@ -60,7 +60,7 @@ public class JSONParser {
             conn = (HttpURLConnection) API_URL.openConnection();
             conn.setRequestMethod("GET");
             jsonParser = Json.createParser(conn.getInputStream());
-            JSON_MAP = parseJSON(jsonParser, new HashMap());
+            JSON_MAP = parseJSON(jsonParser, new HashMap(), new LinkedList());
         } catch (IOException e){
             logger.warning(e.getMessage());
         }finally {
@@ -69,50 +69,42 @@ public class JSONParser {
 
     }
 
-    private HashMap parseJSON(JsonParser jsonParser, HashMap hashMap) {
-        LinkedList traversedObjects = new LinkedList();
+    private HashMap parseJSON(JsonParser jsonParser, HashMap hashMap, LinkedList keyNames) {
         if(jsonParser.hasNext()){
             final JsonParser.Event event = jsonParser.next();
             switch (event) {
                 case START_OBJECT:
                     System.out.println(event.name());
-                    traversedObjects.add(event);
                     break;
                 case END_OBJECT:
                     System.out.println(event.name());
-                    traversedObjects.add(event);
                     break;
                 case START_ARRAY:
                     System.out.println(event.name());
-                    traversedObjects.add(event);
                     break;
                 case END_ARRAY:
                     System.out.println(event.name());
-                    traversedObjects.add(event);
                     break;
                 case KEY_NAME:
                     System.out.println("KEY: " + jsonParser.getString());
-                    traversedObjects.add(event);
+                    keyNames.add(jsonParser.getString());
+                    parseJSON(jsonParser, hashMap, keyNames);
                     break;
                 case VALUE_NULL:
                     System.out.println("VALUE_NULL");
-                    traversedObjects.add(event);
                     break;
                 case VALUE_TRUE:
                     System.out.println(jsonParser.getValue().toString());
-                    traversedObjects.add(event);
                     break;
                 case VALUE_FALSE:
                     System.out.println(jsonParser.getValue().toString());
-                    traversedObjects.add(event);
                     break;
                 case VALUE_NUMBER:
+
                     System.out.println(jsonParser.getString() + "");
-                    traversedObjects.add(event);
                     break;
                 case VALUE_STRING:
                     System.out.println(jsonParser.getString() + "");
-                    traversedObjects.add(event);
                     break;
                 default:
                     System.out.println("parsed event not recognized");
