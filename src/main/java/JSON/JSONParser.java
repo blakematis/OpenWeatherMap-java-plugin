@@ -33,7 +33,7 @@ public class JSONParser {
     public static void main(String [] args) throws MalformedURLException {
         JSONParser jsonParser = new JSONParser("https://api.openweathermap.org/data/2.5/forecast?q=Roseville,US&appid=e513347207aae03c792f055e744790e4");
         jsonParser.parseJSON();
-        logger.info(jsonParser.JSON_MAP.toString());
+        //logger.info(jsonParser.JSON_MAP.toString());
     }
 
     public JSONParser(String API_URL_STRING){
@@ -59,8 +59,11 @@ public class JSONParser {
         try{
             conn = (HttpURLConnection) API_URL.openConnection();
             conn.setRequestMethod("GET");
-            jsonParser = Json.createParser(conn.getInputStream());
-            JSON_MAP = parseJSON(jsonParser, new HashMap(), new LinkedList());
+            //jsonParser = Json.createParser(conn.getInputStream());
+            JsonReader jsonReader = Json.createReader(conn.getInputStream());
+            System.out.println(jsonReader.read().asJsonObject().getJsonArray("list"));
+            System.out.println();
+            //JSON_MAP = parseJSON(jsonParser, new HashMap(), new LinkedList());
         } catch (IOException e){
             logger.warning(e.getMessage());
         }finally {
@@ -69,51 +72,42 @@ public class JSONParser {
 
     }
 
-    private HashMap parseJSON(JsonParser jsonParser, HashMap hashMap, LinkedList keyNames) {
+    private HashMap parseJSON(JsonParser jsonParser, HashMap jsonMap, LinkedList keyNames) {
         if(jsonParser.hasNext()){
             final JsonParser.Event event = jsonParser.next();
+            System.out.println(event.name());
             switch (event) {
                 case START_OBJECT:
-                    System.out.println(event.name());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case END_OBJECT:
-                    System.out.println(event.name());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case START_ARRAY:
-                    System.out.println(event.name());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case END_ARRAY:
-                    System.out.println(event.name());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case KEY_NAME:
-                    System.out.println("KEY: " + jsonParser.getString());
                     keyNames.add(jsonParser.getString());
-                    parseJSON(jsonParser, hashMap, keyNames);
-                    break;
+                    parseJSON(jsonParser, jsonMap, keyNames);
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_NULL:
-                    System.out.println("VALUE_NULL");
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_TRUE:
-                    System.out.println(jsonParser.getValue().toString());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_FALSE:
-                    System.out.println(jsonParser.getValue().toString());
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_NUMBER:
-
-                    System.out.println(jsonParser.getString() + "");
-                    break;
+                    jsonMap.put(keyNames.pop(), jsonParser.getInt());
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_STRING:
-                    System.out.println(jsonParser.getString() + "");
-                    break;
+                    jsonMap.put(keyNames.pop(), jsonParser.getString());
+                    return parseJSON(jsonParser, jsonMap, keyNames);
                 default:
                     System.out.println("parsed event not recognized");
-                    break;
+                    return parseJSON(jsonParser, jsonMap, keyNames);
             }
         }else{
-            return hashMap;
+            return jsonMap;
         }
-        return hashMap;
     }
 
 
