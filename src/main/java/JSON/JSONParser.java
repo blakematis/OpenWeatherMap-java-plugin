@@ -87,7 +87,6 @@ public class JSONParser {
                     return parseJSON(jsonParser, jsonMap, keyNames);
                 case KEY_NAME:
                     keyNames.add(jsonParser.getString());
-                    parseJSON(jsonParser, jsonMap, keyNames);
                     return parseJSON(jsonParser, jsonMap, keyNames);
                 case VALUE_NULL:
                     return parseJSON(jsonParser, jsonMap, keyNames);

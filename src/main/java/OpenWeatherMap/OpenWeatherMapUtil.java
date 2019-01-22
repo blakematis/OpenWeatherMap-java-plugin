@@ -26,40 +26,18 @@ public class OpenWeatherMapUtil {
     public WeatherForecast createForeCast(){
         JsonReader reader = jsonReader.getJsonReader();
         WeatherForecast weatherForecast = new WeatherForecast();
-        weatherForecast.setCity(readCity(reader));
+        weatherForecast.setCity(buildCity(reader));
         reader.close();
         return  weatherForecast;
     }
 
-    private City readCity(JsonReader reader){
-        City city = new City();
-        try{
-           JsonObject cityObj = reader.read().asJsonObject().getJsonObject("city");
-
-           JsonNumber id = cityObj.getJsonNumber("id");
-           city.setId(id.intValue());
-
-           JsonString name = cityObj.getJsonString("name");
-           city.setName(name.getString());
-
-           JsonObject coord = cityObj.getJsonObject("coord");
-           city.setCoord(coord.getJsonNumber("lon").doubleValue(), coord.getJsonNumber("lat").doubleValue());
-
-           JsonString country = cityObj.getJsonString("country");
-           city.setCountry(country.getString());
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return city;
+    public static City buildCity(JsonReader reader){
+        return new City().build(reader);
     }
-
-
 
     public OpenWeatherMapUtil(URL url){
         this.url = url;
     }
-
 
     public String getApi_url() {
         return api_url;
