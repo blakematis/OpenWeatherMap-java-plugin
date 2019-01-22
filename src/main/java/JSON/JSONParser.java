@@ -31,7 +31,7 @@ public class JSONParser {
     private static Logger logger = Logger.getLogger(Logger.class.getName());
 
     public static void main(String [] args) throws MalformedURLException {
-        JSONParser jsonParser = new JSONParser("https://api.openweathermap.org/data/2.5/forecast?q=Roseville,US&appid=e513347207aae03c792f055e744790e4");
+        JSONParser jsonParser = new JSONParser("https://api.openweathermap.org/data/2.5/forecast?q=Roseville,US&units=imperial&appid=e513347207aae03c792f055e744790e4");
         jsonParser.parseJSON();
         //logger.info(jsonParser.JSON_MAP.toString());
     }
