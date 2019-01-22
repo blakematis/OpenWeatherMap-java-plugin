@@ -7,6 +7,6 @@ public class OpenWeatherMapUtilTest {
         OpenWeatherMapUtil openWeatherMapUtil = new OpenWeatherMapUtil(95610);
         WeatherForecast forecast = openWeatherMapUtil.createForeCast();
 
-        //forecast.toString();
+        System.out.println(forecast.toString());
     }
 }

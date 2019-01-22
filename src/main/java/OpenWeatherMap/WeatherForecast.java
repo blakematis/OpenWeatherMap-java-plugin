@@ -88,4 +88,10 @@ public class WeatherForecast {
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
+
+    public String toString(){
+        String str = "- main: " +
+                "\n " + city.toString();
+        return str;
+    }
 }

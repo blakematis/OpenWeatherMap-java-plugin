@@ -28,7 +28,7 @@ public class OpenWeatherMapUtil {
         WeatherForecast weatherForecast = new WeatherForecast();
         weatherForecast.setCity(readCity(reader));
         reader.close();
-        return null;
+        return  weatherForecast;
     }
 
     private City readCity(JsonReader reader){
@@ -48,7 +48,6 @@ public class OpenWeatherMapUtil {
            JsonString country = cityObj.getJsonString("country");
            city.setCountry(country.getString());
 
-           System.out.println(city.toString());
         }catch (Exception e){
             e.printStackTrace();
         }
