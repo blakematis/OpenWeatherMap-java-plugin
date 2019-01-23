@@ -1,6 +1,12 @@
 package OpenWeatherMap;
 
-public class MainForecast {
+import JSON.JavaJsonObject;
+
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
+public class MainForecast implements JavaJsonObject{
 
     private String date_txt;
     private double temp;
@@ -10,6 +16,7 @@ public class MainForecast {
     private double seaLevel;
     private double groundLevel;
     private int humidity;
+    private Wind wind;
 
     public MainForecast(){
 
@@ -79,6 +86,14 @@ public class MainForecast {
         this.humidity = humidity;
     }
 
+    public void setWind(Wind wind){
+        this.wind = wind;
+    }
+
+    public Wind getWind(){
+        return wind;
+    }
+
     @Override
     public String toString(){
         String str = "- MainForecast: {" +
@@ -89,8 +104,22 @@ public class MainForecast {
                 "\n\t sea_level: " + seaLevel + "," +
                 "\n\t grnd_level: " + groundLevel + "," +
                 "\n\t humidty: " + humidity + "," +
-                "\n\t dt_txt: " + date_txt;
+                "\n\t dt_txt: " + date_txt + "," +
+                "\n\t " + wind;
         return str;
     }
 
+    @Override
+    public JavaJsonObject build(JsonObject jsonObject) {
+        JsonArray list = jsonObject.asJsonObject().getJsonArray("list");
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i).toString());
+        }
+        return this;
+    }
+
+    @Override
+    public JsonObject buildJson() {
+        return null;
+    }
 }

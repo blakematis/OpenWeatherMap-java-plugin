@@ -20,27 +20,21 @@ public class City implements JavaJsonObject {
         this.country = country;
     }
 
-    public City build(JsonReader reader){
-        City city = new City();
-        try{
-            JsonObject cityObj = reader.read().asJsonObject().getJsonObject("city");
+    public City build(JsonObject jsonObject){
+        JsonObject cityObj = jsonObject.getJsonObject("city");
 
-            JsonNumber id = cityObj.getJsonNumber("id");
-            city.setId(id.intValue());
+        JsonNumber id = cityObj.getJsonNumber("id");
+        setId(id.intValue());
 
-            JsonString name = cityObj.getJsonString("name");
-            city.setName(name.getString());
+        JsonString name = cityObj.getJsonString("name");
+        setName(name.getString());
 
-            JsonObject coord = cityObj.getJsonObject("coord");
-            city.setCoord(coord.getJsonNumber("lon").doubleValue(), coord.getJsonNumber("lat").doubleValue());
+        JsonObject coord = cityObj.getJsonObject("coord");
+        setCoord(coord.getJsonNumber("lon").doubleValue(), coord.getJsonNumber("lat").doubleValue());
 
-            JsonString country = cityObj.getJsonString("country");
-            city.setCountry(country.getString());
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return city;
+        JsonString country = cityObj.getJsonString("country");
+        setCountry(country.getString());
+        return this;
     }
 
     @Override
@@ -99,8 +93,8 @@ public class City implements JavaJsonObject {
         }
 
         @Override
-        public JavaJsonObject build(JsonReader jsonReader) {
-            return null;
+        public JavaJsonObject build(JsonObject jsonObject) {
+            return this;
         }
 
         @Override

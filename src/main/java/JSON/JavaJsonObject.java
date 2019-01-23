@@ -5,7 +5,7 @@ import javax.json.JsonReader;
 
 public interface JavaJsonObject {
 
-    public JavaJsonObject build(JsonReader jsonReader);
+    public JavaJsonObject build(JsonObject jsonObject);
 
     public JsonObject buildJson();
 

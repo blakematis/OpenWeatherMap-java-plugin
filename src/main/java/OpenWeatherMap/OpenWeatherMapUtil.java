@@ -7,6 +7,7 @@ import javax.json.JsonNumber;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.JsonString;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class OpenWeatherMapUtil {
@@ -17,22 +18,29 @@ public class OpenWeatherMapUtil {
     private URL url;
     private JSONReader jsonReader;
 
-    public OpenWeatherMapUtil(int zipCode) throws Exception{
-        this.zipCode = zipCode;
-        this.url = new URL(api_url + zipCode + api_key);
-        this.jsonReader = new JSONReader(url);
+    public OpenWeatherMapUtil(){
+
     }
 
+    public static JsonObject jsonReply(String API_URL) throws MalformedURLException {
+        return JSONReader.getJsonReply(API_URL);
+    }
+
+    /*
     public WeatherForecast createForeCast(){
+
         JsonReader reader = jsonReader.getJsonReader();
         WeatherForecast weatherForecast = new WeatherForecast();
         weatherForecast.setCity(buildCity(reader));
         reader.close();
         return  weatherForecast;
     }
+    */
 
-    public static City buildCity(JsonReader reader){
-        return new City().build(reader);
+    public static Wind buildWind(JsonObject jsonObject){ return (Wind) new Wind().build(jsonObject);}
+
+    public static City buildCity(JsonObject jsonObject){
+        return new City().build(jsonObject);
     }
 
     public OpenWeatherMapUtil(URL url){
