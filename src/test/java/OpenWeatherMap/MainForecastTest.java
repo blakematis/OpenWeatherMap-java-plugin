@@ -1,9 +1,8 @@
 package OpenWeatherMap;
 
-import JSON.JSONReader;
+
 
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 public class MainForecastTest {
 
