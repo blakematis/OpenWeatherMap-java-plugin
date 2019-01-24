@@ -2,10 +2,8 @@ package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
 
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 public class MainForecast implements JavaJsonObject{
 
@@ -18,9 +16,37 @@ public class MainForecast implements JavaJsonObject{
     private double groundLevel;
     private int humidity;
     private Wind wind;
+    private ConditionCodes weather;
+
 
     public MainForecast(){
 
+    }
+
+    @Override
+    public JavaJsonObject build(JsonObject jsonObject) {
+        JsonObject mainObj = jsonObject.getJsonObject("main");
+        setTemp(mainObj.getJsonNumber("temp").doubleValue());
+        setTempMin(mainObj.getJsonNumber("temp_min").doubleValue());
+        setTempMax(mainObj.getJsonNumber("temp_max").doubleValue());
+        setPressure(mainObj.getJsonNumber("pressure").doubleValue());
+        setSeaLevel(mainObj.getJsonNumber("sea_level").doubleValue());
+        setGroundLevel(mainObj.getJsonNumber("grnd_level").doubleValue());
+        setHumidity(mainObj.getJsonNumber("humidity").intValue());
+        setDate_txt(jsonObject.getJsonString("dt_txt").getString());
+        return this;
+    }
+
+    public JavaJsonObject build(JsonObject jsonObject, int index){
+        JsonArray list = jsonObject.getJsonArray("list");
+        JsonObject main = list.getJsonObject(index);
+        setWind((Wind) new Wind().build(jsonObject));
+        return build(main);
+    }
+
+    @Override
+    public JsonObject buildJson() {
+        return null;
     }
 
     public String getDate_txt() {
@@ -95,6 +121,14 @@ public class MainForecast implements JavaJsonObject{
         return wind;
     }
 
+    public ConditionCodes getWeather() {
+        return weather;
+    }
+
+    public void setWeather(ConditionCodes weather) {
+        this.weather = weather;
+    }
+
     @Override
     public String toString(){
         String str = "- MainForecast: {" +
@@ -110,29 +144,5 @@ public class MainForecast implements JavaJsonObject{
         return str;
     }
 
-    @Override
-    public JavaJsonObject build(JsonObject jsonObject) {
-        JsonObject mainObj = jsonObject.getJsonObject("main");
-        setTemp(mainObj.getJsonNumber("temp").doubleValue());
-        setTempMin(mainObj.getJsonNumber("temp_min").doubleValue());
-        setTempMax(mainObj.getJsonNumber("temp_max").doubleValue());
-        setPressure(mainObj.getJsonNumber("pressure").doubleValue());
-        setSeaLevel(mainObj.getJsonNumber("sea_level").doubleValue());
-        setGroundLevel(mainObj.getJsonNumber("grnd_level").doubleValue());
-        setHumidity(mainObj.getJsonNumber("humidity").intValue());
-        setDate_txt(jsonObject.getJsonString("dt_txt").getString());
-        return this;
-    }
 
-    public JavaJsonObject build(JsonObject jsonObject, int index){
-        JsonArray list = jsonObject.getJsonArray("list");
-        JsonObject main = list.getJsonObject(index);
-        setWind((Wind) new Wind().build(jsonObject));
-        return build(main);
-    }
-
-    @Override
-    public JsonObject buildJson() {
-        return null;
-    }
 }
