@@ -40,7 +40,7 @@ public class OpenWeatherMapUtil {
         return new City().build(jsonObject);
     }
 
-    public static MainForecast buildMainForecast(JsonObject jsonObject, int index) { return (MainForecast) new MainForecast().build(jsonObject);}
+    public static MainForecast buildMainForecast(JsonObject jsonObject, int index) { return (MainForecast) new MainForecast().build(jsonObject, index);}
 
     public OpenWeatherMapUtil(URL url){
         this.url = url;

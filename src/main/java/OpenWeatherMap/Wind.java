@@ -31,6 +31,7 @@ public class Wind implements JavaJsonObject {
     public JavaJsonObject build(JsonObject jsonObject) {
         JsonArray listJsonObj = jsonObject.getJsonArray("list");
         JsonObject forecast = listJsonObj.getJsonObject(0);
+        System.out.println(forecast.toString());
         JsonObject windJsonObj = forecast.getJsonObject("wind");
 
         //Speed

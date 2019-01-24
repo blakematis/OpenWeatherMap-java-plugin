@@ -114,13 +114,21 @@ public class MainForecast implements JavaJsonObject{
     public JavaJsonObject build(JsonObject jsonObject) {
         JsonObject mainObj = jsonObject.getJsonObject("main");
         setTemp(mainObj.getJsonNumber("temp").doubleValue());
+        setTempMin(mainObj.getJsonNumber("temp_min").doubleValue());
+        setTempMax(mainObj.getJsonNumber("temp_max").doubleValue());
+        setPressure(mainObj.getJsonNumber("pressure").doubleValue());
+        setSeaLevel(mainObj.getJsonNumber("sea_level").doubleValue());
+        setGroundLevel(mainObj.getJsonNumber("grnd_level").doubleValue());
+        setHumidity(mainObj.getJsonNumber("humidity").intValue());
+        setDate_txt(jsonObject.getJsonString("dt_txt").getString());
         return this;
     }
 
     public JavaJsonObject build(JsonObject jsonObject, int index){
-        JsonArray list = jsonObject.asJsonObject().getJsonArray("list");
-        jsonObject = list.getJsonArray(index).asJsonObject();
-        return build(jsonObject);
+        JsonArray list = jsonObject.getJsonArray("list");
+        JsonObject main = list.getJsonObject(index);
+        setWind((Wind) new Wind().build(jsonObject));
+        return build(main);
     }
 
     @Override
