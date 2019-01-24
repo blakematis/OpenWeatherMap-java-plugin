@@ -2,6 +2,7 @@ package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
 
+import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -111,11 +112,15 @@ public class MainForecast implements JavaJsonObject{
 
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
-        JsonArray list = jsonObject.asJsonObject().getJsonArray("list");
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i).toString());
-        }
+        JsonObject mainObj = jsonObject.getJsonObject("main");
+        setTemp(mainObj.getJsonNumber("temp").doubleValue());
         return this;
+    }
+
+    public JavaJsonObject build(JsonObject jsonObject, int index){
+        JsonArray list = jsonObject.asJsonObject().getJsonArray("list");
+        jsonObject = list.getJsonArray(index).asJsonObject();
+        return build(jsonObject);
     }
 
     @Override

@@ -36,6 +36,7 @@ public class Wind implements JavaJsonObject {
         //Speed
         setSpeed(windJsonObj.getJsonNumber("speed").doubleValue());
 
+        //Degree
         setDeg(windJsonObj.getJsonNumber("deg").doubleValue());
 
 

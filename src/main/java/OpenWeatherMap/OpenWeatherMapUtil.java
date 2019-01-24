@@ -3,10 +3,7 @@ package OpenWeatherMap;
 import JSON.JSONReader;
 import com.sun.istack.internal.NotNull;
 
-import javax.json.JsonNumber;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonString;
+import javax.json.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -42,6 +39,8 @@ public class OpenWeatherMapUtil {
     public static City buildCity(JsonObject jsonObject){
         return new City().build(jsonObject);
     }
+
+    public static MainForecast buildMainForecast(JsonObject jsonObject, int index) { return (MainForecast) new MainForecast().build(jsonObject);}
 
     public OpenWeatherMapUtil(URL url){
         this.url = url;
