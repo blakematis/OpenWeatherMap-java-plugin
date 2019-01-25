@@ -22,16 +22,6 @@ public class OpenWeatherMapUtil {
         return JSONReader.getJsonReply(API_URL);
     }
 
-    /*
-    public FiveDayForecast createForeCast(){
-
-        JsonReader reader = jsonReader.getJsonReader();
-        FiveDayForecast weatherForecast = new FiveDayForecast();
-        weatherForecast.setCity(buildCity(reader));
-        reader.close();
-        return  weatherForecast;
-    }
-    */
 
     public static Wind buildWind(JsonObject jsonObject){ return (Wind) new Wind().build(jsonObject);}
 

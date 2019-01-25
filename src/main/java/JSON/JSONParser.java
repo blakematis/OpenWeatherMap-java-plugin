@@ -8,11 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Logger;
-
-import static javax.json.stream.JsonParser.Event.*;
 
 /**
  * JSonParser parses a JSON file into a HashMap.
@@ -47,6 +44,7 @@ public class JSONParser {
         URL url = new URL(API_URL);
         parseJSON(url);
     }
+
 
     public void parseJSON(URL API_URL){
         HttpURLConnection conn = null;
