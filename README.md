@@ -1,4 +1,5 @@
-# json-java-formatter [![Build Status](https://travis-ci.org/blakematis/json-java-formatter.svg?branch=master)](https://travis-ci.org/blakematis/json-java-formatter)
+# json-java-formatter 
+[![Build Status](https://travis-ci.org/blakematis/json-java-formatter.svg?branch=master)](https://travis-ci.org/blakematis/json-java-formatter)
 
 This repository is intended to allow for easy access to JSON data from Third-party APIs.
 
