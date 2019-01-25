@@ -1,6 +1,6 @@
 # json-java-formatter 
 [![Build Status](https://travis-ci.org/blakematis/json-java-formatter.svg?branch=master)](https://travis-ci.org/blakematis/json-java-formatter)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]
+[![GitHub license](https://img.shields.io/badge/license-lgpl-3.0.svg)]
 
 This repository is intended to allow for easy access to JSON data from Third-party APIs.
 
