@@ -17,6 +17,7 @@ public class Forecast implements JavaJsonObject{
     private int humidity;
     private Wind wind;
     private ConditionCodes weather;
+    private Clouds clouds;
     private int index;
 
 
@@ -43,7 +44,7 @@ public class Forecast implements JavaJsonObject{
         JsonArray list = jsonObject.getJsonArray("list");
         JsonObject main = list.getJsonObject(index);
         setWind((Wind) new Wind().build(jsonObject));
-
+        setClouds((Clouds) new Clouds().build(jsonObject,index));
         return build(main);
     }
 
@@ -130,6 +131,14 @@ public class Forecast implements JavaJsonObject{
 
     public void setWeather(ConditionCodes weather) {
         this.weather = weather;
+    }
+
+    public Clouds getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(Clouds clouds) {
+        this.clouds = clouds;
     }
 
     public int getIndex() {

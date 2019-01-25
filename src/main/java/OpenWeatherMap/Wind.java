@@ -7,6 +7,7 @@ import javax.json.*;
 public class Wind implements JavaJsonObject {
     private double speed;
     private double deg;
+    private int index;
 
     public Wind(){ }
 
@@ -27,12 +28,17 @@ public class Wind implements JavaJsonObject {
         return deg;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
-        JsonArray listJsonObj = jsonObject.getJsonArray("list");
-        JsonObject forecast = listJsonObj.getJsonObject(0);
-        System.out.println(forecast.toString());
-        JsonObject windJsonObj = forecast.getJsonObject("wind");
+        JsonObject windJsonObj =  jsonObject.getJsonObject("wind");
 
         //Speed
         setSpeed(windJsonObj.getJsonNumber("speed").doubleValue());
@@ -50,6 +56,13 @@ public class Wind implements JavaJsonObject {
         JsonObject jsonObject = Json.createObjectBuilder().add("speed", speed)
                 .add("deg", deg).build();
         return jsonObject;
+    }
+
+    public JavaJsonObject build(JsonObject jsonObject, int index){
+        setIndex(index);
+        JsonArray list = jsonObject.getJsonArray("list");
+        JsonObject main = list.getJsonObject(index);
+        return build(main);
     }
 
     public String toString(){

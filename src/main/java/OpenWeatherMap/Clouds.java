@@ -2,10 +2,12 @@ package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
 
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 
 public class Clouds implements JavaJsonObject{
     private int all;
+    private int index;
 
     public Clouds(){
 
@@ -17,12 +19,17 @@ public class Clouds implements JavaJsonObject{
 
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
-        return null;
+        JsonObject cloudObj = jsonObject.getJsonObject("clouds");
+        setAll(cloudObj.getJsonNumber("all").intValue());
+        return this;
     }
 
 
     public JavaJsonObject build(JsonObject jsonObject, int index){
-        return build(jsonObject);
+        setIndex(index);
+        JsonArray list = jsonObject.getJsonArray("list");
+        JsonObject main = list.getJsonObject(index);
+        return build(main);
     }
 
     @Override
@@ -36,6 +43,14 @@ public class Clouds implements JavaJsonObject{
 
     public void setAll(int all) {
         this.all = all;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @Override

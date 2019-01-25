@@ -20,7 +20,7 @@ public class FiveDayForecast {
 
     public String toString(){
         String str = "- Forecast: " +
-                "\n " + city.toString();
+                "\n\t" + city.toString();
         return str;
     }
 }
