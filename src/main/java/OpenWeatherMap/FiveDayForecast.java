@@ -1,11 +1,11 @@
 package OpenWeatherMap;
 
-public class WeatherForecast {
+public class FiveDayForecast {
 
     private City city;
 
 
-    public WeatherForecast(){
+    public FiveDayForecast(){
 
     }
 

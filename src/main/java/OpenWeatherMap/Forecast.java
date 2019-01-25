@@ -5,7 +5,7 @@ import JSON.JavaJsonObject;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
-public class MainForecast implements JavaJsonObject{
+public class Forecast implements JavaJsonObject{
 
     private String date_txt;
     private double temp;
@@ -17,9 +17,10 @@ public class MainForecast implements JavaJsonObject{
     private int humidity;
     private Wind wind;
     private ConditionCodes weather;
+    private int index;
 
 
-    public MainForecast(){
+    public Forecast(){
 
     }
 
@@ -38,9 +39,11 @@ public class MainForecast implements JavaJsonObject{
     }
 
     public JavaJsonObject build(JsonObject jsonObject, int index){
+        setIndex(index);
         JsonArray list = jsonObject.getJsonArray("list");
         JsonObject main = list.getJsonObject(index);
         setWind((Wind) new Wind().build(jsonObject));
+
         return build(main);
     }
 
@@ -129,9 +132,17 @@ public class MainForecast implements JavaJsonObject{
         this.weather = weather;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public String toString(){
-        String str = "- MainForecast: {" +
+        String str = "- Forecast: {" +
                 "\n\t temp: " + temp + "," +
                 "\n\t temp_min: " + tempMin + "," +
                 "\n\t temp_max: " + tempMax + "," +
