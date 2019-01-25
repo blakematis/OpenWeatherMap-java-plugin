@@ -46,6 +46,10 @@ public class OpenWeatherMapUtil {
         this.url = url;
     }
 
+    public static Clouds buildClouds(JsonObject jsonObject) {
+        return (Clouds) new Clouds().build(jsonObject);
+    }
+
     public String getApi_url() {
         return api_url;
     }
