@@ -35,11 +35,12 @@ public class Main implements JavaJsonObject {
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
         main = jsonObject.getJsonObject("main");
-        setTemp(jsonObject.getJsonNumber("temp").doubleValue());
-        setHumidity(jsonObject.getJsonNumber("humidity").intValue());
-        setPressure(jsonObject.getJsonNumber("pressure").intValue());
-        setTempMin(jsonObject.getJsonNumber("temp_min").intValue());
-        setTempMax(jsonObject.getJsonNumber("temp_max").intValue());
+        setTemp(main.getJsonNumber("temp").doubleValue());
+        setHumidity(main.getJsonNumber("humidity").intValue());
+        setPressure(main.getJsonNumber("pressure").intValue());
+        setTempMin(main.getJsonNumber("temp_min").doubleValue());
+        setTempMax(main.getJsonNumber("temp_max").doubleValue());
+
         return this;
     }
 
