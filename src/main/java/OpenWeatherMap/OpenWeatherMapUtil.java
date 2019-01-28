@@ -10,7 +10,7 @@ public class OpenWeatherMapUtil {
 
     private String api_url = "https://api.openweathermap.org/data/2.5/forecast?zip=";
     private int zipCode;
-    private String api_key = "&units=imperial&appid=e513347207aae03c792f055e744790e4";
+    private String api_key;
     private URL url;
     private JSONReader jsonReader;
 
@@ -29,7 +29,7 @@ public class OpenWeatherMapUtil {
         return new City().build(jsonObject);
     }
 
-    public static Forecast buildMainForecast(JsonObject jsonObject, int index) { return (Forecast) new Forecast().build(jsonObject, index);}
+    public static Forecast buildForecast(JsonObject jsonObject, int index) { return (Forecast) new Forecast().build(jsonObject, index);}
 
     public OpenWeatherMapUtil(URL url){
         this.url = url;

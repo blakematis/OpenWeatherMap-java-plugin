@@ -1,26 +1,17 @@
 package OpenWeatherMap;
 
+import java.util.ArrayList;
+
 public class FiveDayForecast {
 
-    private City city;
-
+    private ArrayList<Forecast> forecasts;
 
     public FiveDayForecast(){
 
     }
 
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
     public String toString(){
-        String str = "- Forecast: " +
-                "\n\t" + city.toString();
-        return str;
+        return "";
     }
 }

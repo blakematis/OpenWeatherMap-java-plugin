@@ -84,9 +84,24 @@ public enum ConditionCodes {
         this.description = description;
     }
 
-    private double id(){ return  id;}
+    public static ConditionCodes codeFromId(int id){
+        for(ConditionCodes code: ConditionCodes.values()){
+            if(code.id == id){
+                return code;
+            }
+        }
+        return null;
+    }
 
-    private String main(){ return main;}
+    public double id(){ return  id;}
 
-    private String description(){ return description;}
+    public String main(){ return main;}
+
+    public String description(){ return description;}
+
+    public String toString(){
+        return "id: " + id + "," +
+                "\nmain: " + main + "," +
+                "\ndescription: " + description;
+    }
 }

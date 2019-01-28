@@ -4,10 +4,20 @@ import JSON.JavaJsonObject;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class Forecast implements JavaJsonObject{
 
     private String date_txt;
+    private Long epochTime;
     private double temp;
     private double tempMin;
     private double tempMax;
@@ -16,9 +26,11 @@ public class Forecast implements JavaJsonObject{
     private double groundLevel;
     private int humidity;
     private Wind wind;
-    private ConditionCodes weather;
+    private Weather weather;
     private Clouds clouds;
     private int index;
+    private Date date;
+    private Time time;
 
 
     public Forecast(){
@@ -28,6 +40,7 @@ public class Forecast implements JavaJsonObject{
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
         JsonObject mainObj = jsonObject.getJsonObject("main");
+        setEpochTime((long) jsonObject.getInt("dt"));
         setTemp(mainObj.getJsonNumber("temp").doubleValue());
         setTempMin(mainObj.getJsonNumber("temp_min").doubleValue());
         setTempMax(mainObj.getJsonNumber("temp_max").doubleValue());
@@ -36,6 +49,7 @@ public class Forecast implements JavaJsonObject{
         setGroundLevel(mainObj.getJsonNumber("grnd_level").doubleValue());
         setHumidity(mainObj.getJsonNumber("humidity").intValue());
         setDate_txt(jsonObject.getJsonString("dt_txt").getString());
+        buildDate(epochTime);
         return this;
     }
 
@@ -43,9 +57,21 @@ public class Forecast implements JavaJsonObject{
         setIndex(index);
         JsonArray list = jsonObject.getJsonArray("list");
         JsonObject main = list.getJsonObject(index);
-        setWind((Wind) new Wind().build(jsonObject));
+        setWind((Wind) new Wind().build(jsonObject, index));
         setClouds((Clouds) new Clouds().build(jsonObject,index));
+        setWeather((Weather) new Weather().build(jsonObject, index));
         return build(main);
+    }
+
+    private void buildDate(Long epochTime){
+        Calendar calendar = new GregorianCalendar();
+        Date date = new Date(epochTime*1000);
+        calendar.setTime(date);
+        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+        System.out.println(format.format(date));
+        setDate(date);
     }
 
     @Override
@@ -125,11 +151,11 @@ public class Forecast implements JavaJsonObject{
         return wind;
     }
 
-    public ConditionCodes getWeather() {
+    public Weather getWeather() {
         return weather;
     }
 
-    public void setWeather(ConditionCodes weather) {
+    public void setWeather(Weather weather) {
         this.weather = weather;
     }
 
@@ -149,9 +175,26 @@ public class Forecast implements JavaJsonObject{
         this.index = index;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Long getEpochTime() {
+        return epochTime;
+    }
+
+    public void setEpochTime(Long epochTime) {
+        this.epochTime = epochTime;
+    }
+
     @Override
     public String toString(){
         String str = "- Forecast: {" +
+                "\n\t dt: " + epochTime + "," +
                 "\n\t temp: " + temp + "," +
                 "\n\t temp_min: " + tempMin + "," +
                 "\n\t temp_max: " + tempMax + "," +
@@ -160,6 +203,7 @@ public class Forecast implements JavaJsonObject{
                 "\n\t grnd_level: " + groundLevel + "," +
                 "\n\t humidty: " + humidity + "," +
                 "\n\t dt_txt: " + date_txt + "," +
+                "\n\t " + weather + "," +
                 "\n\t " + wind;
         return str;
     }
