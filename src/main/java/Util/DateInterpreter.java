@@ -1,6 +1,7 @@
 package Util;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -38,7 +39,7 @@ public class DateInterpreter {
     public DateInterpreter(Date date){
         setEpochTime(date.getTime());
         calendar.setTime(date);
-        calendar.setTimeZone(TimeZone.getDefault());
+        calendar.setTimeZone(TimeZone.getTimeZone("PST"));
         setDay(calendar.get(Calendar.DAY_OF_WEEK)-1);
         setMonth(calendar.get(Calendar.MONTH));
         setYear(calendar.get(Calendar.YEAR));
