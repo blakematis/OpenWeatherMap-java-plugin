@@ -73,41 +73,7 @@ public class City implements JavaJsonObject {
     }
 
 
-    private class Coord implements JavaJsonObject{
-        private double lon;
-        private double lat;
 
-        public Coord(double lon, double lat){
-            this.lon = lon;
-            this.lat = lat;
-        }
-
-
-
-        @Override
-        public String toString(){
-            String str = "{\n\t\t lon: " + lon + "," +
-                    "\n\t\t lat: " + lat +
-                    "\n\t }";
-            return str;
-        }
-
-        @Override
-        public JavaJsonObject build(JsonObject jsonObject) {
-            //TODO
-            return this;
-        }
-
-        @Override
-        public JsonObject buildJson() {
-            JsonArray jsonArray = (JsonArray)Json.createArrayBuilder().build();
-            jsonArray.add(0,Json.createObjectBuilder().build().put("lat",
-                            Json.createValue(coord.lat)));
-            jsonArray.add(0, Json.createObjectBuilder().build().put("lon",
-                    Json.createValue(coord.lon)));
-            return (JsonObject) jsonArray;
-        }
-    }
     @Override
     public String toString(){
         String str = "- city: { " +

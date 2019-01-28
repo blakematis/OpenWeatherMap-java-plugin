@@ -1,0 +1,19 @@
+package OpenWeatherMap;
+
+import Util.DateInterpreterTest;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class OpenWeatherMapTestRunner {
+
+    public static void main(String[] args){
+        Result result = JUnitCore.runClasses(CityTest.class);
+
+        for(Failure failure: result.getFailures()){
+            System.out.println(failure.toString());
+        }
+
+        System.out.println(result.wasSuccessful());
+    }
+}

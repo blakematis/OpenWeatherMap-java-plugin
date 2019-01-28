@@ -1,6 +1,7 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import Util.DateInterpreter;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -29,8 +30,8 @@ public class Forecast implements JavaJsonObject{
     private Weather weather;
     private Clouds clouds;
     private int index;
-    private Date date;
-    private Time time;
+    private DateInterpreter dt;
+    private String day;
 
 
     public Forecast(){
@@ -63,15 +64,9 @@ public class Forecast implements JavaJsonObject{
         return build(main);
     }
 
-    private void buildDate(Long epochTime){
-        Calendar calendar = new GregorianCalendar();
-        Date date = new Date(epochTime*1000);
-        calendar.setTime(date);
-        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-        DateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        format.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-        System.out.println(format.format(date));
-        setDate(date);
+    private void buildDate(Long epochTime) {
+        dt = new DateInterpreter(epochTime);
+        setDay(dt.getDayOfWeek(dt.getDay()));
     }
 
     @Override
@@ -175,12 +170,12 @@ public class Forecast implements JavaJsonObject{
         this.index = index;
     }
 
-    public Date getDate() {
-        return date;
+    public DateInterpreter getDt() {
+        return dt;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDt(DateInterpreter dt) {
+        this.dt = dt;
     }
 
     public Long getEpochTime() {
@@ -189,6 +184,14 @@ public class Forecast implements JavaJsonObject{
 
     public void setEpochTime(Long epochTime) {
         this.epochTime = epochTime;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     @Override

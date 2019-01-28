@@ -19,15 +19,16 @@ public class DateInterpreter {
 
     private int year;
 
-    private Date date;
-
-    private Time localTime;
-
     private Calendar calendar = new GregorianCalendar();
 
     private static String[] days = new String[]{
             "Sunday", "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday"};
+
+    private static String[] months = new String[]{
+            "January", "February", "March", "April", "May",
+            "June", "July", "August", "September", "October",
+            "November", "December"};
 
     public DateInterpreter(){
 
@@ -44,10 +45,14 @@ public class DateInterpreter {
         setDay(calendar.get(Calendar.DAY_OF_WEEK)-1);
         setMonth(calendar.get(Calendar.MONTH));
         setYear(calendar.get(Calendar.YEAR));
-        calendar.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-        System.out.println(getMonth());
-        System.out.println(getYear());
+
     }
+
+    public int getHour(){ return calendar.get(Calendar.HOUR);}
+
+    public int getMinutes(){ return calendar.get(Calendar.MINUTE);}
+
+    public String getMonthOfYear(int month){ return months[month];}
 
     public String getDayOfWeek(int day){
         return days[day];
