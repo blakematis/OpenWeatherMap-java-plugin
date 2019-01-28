@@ -5,15 +5,6 @@ import Util.DateInterpreter;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 public class Forecast implements JavaJsonObject{
 
@@ -196,7 +187,7 @@ public class Forecast implements JavaJsonObject{
 
     @Override
     public String toString(){
-        String str = "- Forecast: {" +
+        return "- Forecast: {" +
                 "\n\t dt: " + epochTime + "," +
                 "\n\t temp: " + temp + "," +
                 "\n\t temp_min: " + tempMin + "," +
@@ -208,7 +199,6 @@ public class Forecast implements JavaJsonObject{
                 "\n\t dt_txt: " + date_txt + "," +
                 "\n\t " + weather + "," +
                 "\n\t " + wind;
-        return str;
     }
 
 

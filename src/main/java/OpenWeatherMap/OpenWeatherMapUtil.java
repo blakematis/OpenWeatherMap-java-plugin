@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class OpenWeatherMapUtil {
 
-    private String api_url = "https://api.openweathermap.org/data/2.5/forecast?zip=";
+    private final String api_url = "https://api.openweathermap.org/data/2.5/forecast?zip=";
     private int zipCode;
     private String api_key;
     private URL url;

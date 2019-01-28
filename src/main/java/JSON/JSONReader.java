@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 public class JSONReader {
-    private static Logger logger = Logger.getLogger("JSONReader");
+    private static final Logger logger = Logger.getLogger("JSONReader");
 
     public JSONReader(){
 
@@ -24,9 +24,8 @@ public class JSONReader {
         try{
             HttpURLConnection conn = (HttpURLConnection) API_URL.openConnection();
             conn.setRequestMethod("GET");
-            //jsonParser = Json.createParser(conn.getInputStream());
-            JsonReader jsonReader = Json.createReader(conn.getInputStream());
-            return jsonReader;
+
+            return Json.createReader(conn.getInputStream());
         } catch (IOException e) {
             logger.warning(e.getMessage());
         }

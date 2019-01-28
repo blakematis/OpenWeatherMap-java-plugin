@@ -53,9 +53,8 @@ public class Wind implements JavaJsonObject {
 
     @Override
     public JsonObject buildJson() {
-        JsonObject jsonObject = Json.createObjectBuilder().add("speed", speed)
+        return Json.createObjectBuilder().add("speed", speed)
                 .add("deg", deg).build();
-        return jsonObject;
     }
 
     public JavaJsonObject build(JsonObject jsonObject, int index){

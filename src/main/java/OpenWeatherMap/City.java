@@ -76,12 +76,11 @@ public class City implements JavaJsonObject {
 
     @Override
     public String toString(){
-        String str = "- city: { " +
+        return "- city: { " +
                 "\n\t id: " + id + "," +
                 "\n\t name: " + name + "," +
                 "\n\t - coord: " + coord.toString() + "," +
                 "\n\t country: " + country +
                 "\n }";
-        return str;
     }
 }

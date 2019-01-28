@@ -1,9 +1,6 @@
 package Util;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -19,13 +16,13 @@ public class DateInterpreter {
 
     private int year;
 
-    private Calendar calendar = new GregorianCalendar();
+    private final Calendar calendar = new GregorianCalendar();
 
-    private static String[] days = new String[]{
+    private static final String[] days = new String[]{
             "Sunday", "Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday"};
 
-    private static String[] months = new String[]{
+    private static final String[] months = new String[]{
             "January", "February", "March", "April", "May",
             "June", "July", "August", "September", "October",
             "November", "December"};

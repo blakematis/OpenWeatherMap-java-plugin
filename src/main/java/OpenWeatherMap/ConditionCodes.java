@@ -8,7 +8,7 @@ public enum ConditionCodes {
 
     //Thunderstorm
     THUNDERSTORM_LIGHT_RAIN(200,"Thunderstorm", "thunderstorm with light rain"),
-    THUNDERSTORM_RAIN(201, "Thundestorm", "thunderstorm with rain"),
+    THUNDERSTORM_RAIN(201, "Thunderstorm", "thunderstorm with rain"),
     THUNDERSTORM_HEAVY_RAIN(202, "Thunderstorm", "thunderstorm with heavy rain"),
     LIGHT_THUNDERSTORM(210, "Thunderstorm", "light thunderstorm"),
     THUNDERSTORM(211, "Thunderstorm", "thunderstorm"),
