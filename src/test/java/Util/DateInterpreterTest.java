@@ -2,6 +2,8 @@ package Util;
 
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertEquals;
 
 public class DateInterpreterTest {
@@ -61,5 +63,14 @@ public class DateInterpreterTest {
         Long dt = 1548676800L;
         DateInterpreter dateInterpreter = new DateInterpreter(dt);
         assertEquals("Minutes test: ", 0, dateInterpreter.getMinutes());
+    }
+
+    @Test
+    public void testLocalDatetime(){
+        Long dt = 1548676800L;
+        DateInterpreter dateInterpreter = new DateInterpreter(dt);
+        LocalDateTime localDateTime = dateInterpreter.getLocalDatetime();
+        String actual = localDateTime.toString();
+        assertEquals("LocaldateTime :", "2019-01-28T04:00", actual);
     }
 }

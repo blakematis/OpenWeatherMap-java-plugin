@@ -5,7 +5,6 @@ import org.junit.Test;
 import javax.json.JsonObject;
 import java.net.MalformedURLException;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CityTest {
@@ -13,7 +12,7 @@ public class CityTest {
     @Test
     public void testBuildCity(){
         try {
-            JsonObject jsonObject = OpenWeatherMapUtil.jsonReply("https://api.openweathermap.org/data/2.5/forecast?q=Roseville,US&units=imperial&appid=e513347207aae03c792f055e744790e4");
+            JsonObject jsonObject = OpenWeatherMapUtil.jsonReply("https://samples.openweathermap.org/data/2.5/forecast?q=Roseville,us&appid=b6907d289e10d714a6e88b30761fae22");
             OpenWeatherMapUtil.buildCity(jsonObject);
             assertTrue(OpenWeatherMapUtil.buildCity(jsonObject) != null);
         }catch (MalformedURLException e){

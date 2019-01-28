@@ -1,8 +1,12 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import Util.DateInterpreter;
 
 import javax.json.JsonObject;
+
+import java.time.LocalDateTime;
+
 
 public class Sys implements JavaJsonObject{
 
@@ -25,6 +29,16 @@ public class Sys implements JavaJsonObject{
         setSunrise(sys.getJsonNumber("sunrise").longValue());
         setSunset(sys.getJsonNumber("sunset").longValue());
         return this;
+    }
+
+    public LocalDateTime getSunriseTime(){
+        DateInterpreter dt = new DateInterpreter(getSunrise());
+        return dt.getLocalDatetime();
+    }
+
+    public LocalDateTime getSunsetTime(){
+        DateInterpreter dt = new DateInterpreter(getSunset());
+        return dt.getLocalDatetime();
     }
 
     @Override

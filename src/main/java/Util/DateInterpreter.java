@@ -48,6 +48,13 @@ public class DateInterpreter {
 
     }
 
+    public LocalDateTime getLocalDatetime() {
+        return LocalDateTime.of(this.getYear(), this.getMonth()+1,
+                this.getDayOfMonth(), this.getHour(), this.getMinutes());
+    }
+
+    public int getDayOfMonth(){ return  calendar.get(Calendar.DAY_OF_MONTH);}
+
     public int getHour(){ return calendar.get(Calendar.HOUR);}
 
     public int getMinutes(){ return calendar.get(Calendar.MINUTE);}
