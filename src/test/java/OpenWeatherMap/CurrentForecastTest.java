@@ -26,5 +26,5 @@ public class CurrentForecastTest {
     public void testBuildMain(){
         assertTrue(currentForecast != null);
     }
-    
+
 }
