@@ -1,28 +1,28 @@
-group 'com.enerdapt'
+group 'EnerDapt'
 version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
 
-    repositories {
-        maven {
-            url "$buildDir/repo"
-        }
-    }
-}
 
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+
+
+apply plugin: 'net.researchgate.release'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'javax.json:javax.json-api:1.1'
+    //noinspection SpellCheckingInspection
+    compile 'org.glassfish:javax.json:1.0.4'
 }
 
 buildscript {
@@ -36,18 +36,27 @@ buildscript {
     }
 }
 
-apply plugin: 'net.researchgate.release'
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile 'javax.json:javax.json-api:1.1'
-    //noinspection SpellCheckingInspection
-    compile 'org.glassfish:javax.json:1.0.4'
-}
-
 release {
     failOnUnversionedFiles = false
+}
+
+task sourceJar(group: 'build', type: Jar, dependsOn: classes){
+    classifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'java-json-formatter'
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+
 }
 
 
