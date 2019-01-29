@@ -23,7 +23,7 @@ public class CurrentForecastTest {
     }
 
     @Test
-    public void testBuildMain(){
+    public void testBuildForecast(){
         assertTrue(currentForecast != null);
     }
 
