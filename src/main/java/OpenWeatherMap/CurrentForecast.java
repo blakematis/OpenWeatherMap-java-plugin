@@ -19,11 +19,11 @@ public class CurrentForecast implements JavaJsonObject {
     @Override
     public JavaJsonObject build(JsonObject jsonObject){
         currentForecast = jsonObject;
-        coord = (Coord) coord.build(jsonObject);
-        sys = (Sys) sys.build(jsonObject);
-        weather = (Weather) weather.build(jsonObject);
-        main = (Main) main.build(jsonObject);
-        wind = (Wind) wind.build(jsonObject);
+        coord = (Coord) new Coord().build(currentForecast);
+        sys = (Sys) new Sys().build(jsonObject);
+        weather = (Weather) new Weather().build(jsonObject);
+        main = (Main) new Main().build(jsonObject);
+        wind = (Wind) new Wind().build(jsonObject);
         name = currentForecast.getJsonString("name").getString();
         epochTime = currentForecast.getJsonNumber("dt").longValue();
         return this;

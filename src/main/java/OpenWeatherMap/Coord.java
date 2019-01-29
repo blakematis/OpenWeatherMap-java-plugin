@@ -7,8 +7,13 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 
 public class Coord implements JavaJsonObject {
-    private final double lon;
-    private final double lat;
+    private double lon;
+    private double lat;
+    private JsonObject coord;
+
+    public Coord(){
+
+    }
 
     public Coord(double lon, double lat){
         this.lon = lon;
@@ -26,7 +31,9 @@ public class Coord implements JavaJsonObject {
 
     @Override
     public JavaJsonObject build(JsonObject jsonObject) {
-        //TODO
+        coord = jsonObject.getJsonObject("coord");
+        lon = coord.getJsonNumber("lon").doubleValue();
+        lat = coord.getJsonNumber("lat").doubleValue();
         return this;
     }
 
@@ -39,4 +46,5 @@ public class Coord implements JavaJsonObject {
                 Json.createValue(lon)));
         return (JsonObject) jsonArray;
     }
+
 }
