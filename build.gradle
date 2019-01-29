@@ -31,4 +31,8 @@ dependencies {
     compile 'org.glassfish:javax.json:1.0.4'
 }
 
+release {
+    failOnUnversionedFiles = false
+}
+
 
