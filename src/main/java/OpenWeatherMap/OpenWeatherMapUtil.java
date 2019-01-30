@@ -30,6 +30,10 @@ public class OpenWeatherMapUtil {
         return (Weather) new Weather().build(jsonReply(API_URL));
     }
 
+    public static ConditionCodes buildConditionCode(String API_URL) throws MalformedURLException{
+        return ConditionCodes.codeFromId(jsonReply(API_URL).getJsonArray("weather").get(0).asJsonObject().getJsonNumber("id").intValue());
+    }
+
     public static Coord buildCoord(String API_URL) throws MalformedURLException {
         return (Coord) new Coord().build(jsonReply(API_URL));
     }

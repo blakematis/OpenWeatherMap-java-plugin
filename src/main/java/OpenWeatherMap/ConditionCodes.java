@@ -72,9 +72,12 @@ public enum ConditionCodes {
     FEW_CLOUDS(801, "Clouds", "few clouds"),
     SCATTERED_CLOUDS(802, "Clouds", "scattered clouds"),
     BROKEN_CLOUDS(803, "Clouds", "broken clouds"),
-    OVERCAST_CLOUDS(804, "Clouds", "overcast clouds");
+    OVERCAST_CLOUDS(804, "Clouds", "overcast clouds"),
 
-    private final double id;
+    //ERROR
+    ERROR(-1, "Error", "error code not found");
+
+    private final int id;
     private final String main;
     private final String description;
 
@@ -85,19 +88,20 @@ public enum ConditionCodes {
     }
 
     public static ConditionCodes codeFromId(int id){
-        for(ConditionCodes code: ConditionCodes.values()){
-            if(code.id == id){
+        ConditionCodes[] codes =ConditionCodes.values();
+        for(ConditionCodes code: codes){
+            if(code.getId() == id){
                 return code;
             }
         }
-        return null;
+        return ConditionCodes.ERROR;
     }
 
-    public double id(){ return  id;}
+    public int getId(){ return  id;}
 
-    public String main(){ return main;}
+    public String getMain(){ return main;}
 
-    public String description(){ return description;}
+    public String getDescription(){ return description;}
 
     public String toString(){
         return "id: " + id + "," +
