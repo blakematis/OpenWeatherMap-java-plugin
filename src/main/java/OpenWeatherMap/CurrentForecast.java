@@ -1,9 +1,11 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import Util.DateInterpreter;
 
 
 import javax.json.JsonObject;
+import java.time.LocalDateTime;
 
 public class CurrentForecast implements JavaJsonObject {
 
@@ -27,6 +29,11 @@ public class CurrentForecast implements JavaJsonObject {
         name = currentForecast.getJsonString("name").getString();
         epochTime = currentForecast.getJsonNumber("dt").longValue();
         return this;
+    }
+
+    public LocalDateTime getLastUpdatetime() {
+        DateInterpreter dt = new DateInterpreter(this.getEpochTime());
+        return dt.getLocalDatetime();
     }
 
     @Override
