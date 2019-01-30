@@ -7,12 +7,13 @@ import org.junit.runner.notification.Failure;
 public class OpenWeatherMapTestRunner {
 
     public static void main(String[] args){
-        Result result = JUnitCore.runClasses(SysTest.class,MainTest.class);
+        Result result = JUnitCore.runClasses(SysTest.class,MainTest.class,
+                CurrentForecastTest.class, WeatherTest.class, CoordTest.class);
 
         for(Failure failure: result.getFailures()){
             System.out.println(failure.toString());
         }
 
-        System.out.println(result.wasSuccessful());
+        System.out.println("All tests were Successful: " + result.wasSuccessful());
     }
 }

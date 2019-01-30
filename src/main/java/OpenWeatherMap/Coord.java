@@ -47,4 +47,15 @@ public class Coord implements JavaJsonObject {
         return (JsonObject) jsonArray;
     }
 
+    public double getLon() {
+        return lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public JsonObject getCoord() {
+        return coord;
+    }
 }

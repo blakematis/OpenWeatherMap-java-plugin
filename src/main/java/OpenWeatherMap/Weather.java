@@ -25,8 +25,8 @@ public class Weather implements JavaJsonObject {
         JsonArray weatherObj = jsonObject.getJsonArray("weather");
         setId(weatherObj.getJsonObject(0).getJsonNumber("id").intValue());
         setConditionCodes(ConditionCodes.codeFromId(getId()));
-        setDescription(conditionCodes.description());
-        setMain(conditionCodes.main());
+        setDescription(getConditionCodes().description());
+        setMain(getConditionCodes().main());
         return this;
     }
 

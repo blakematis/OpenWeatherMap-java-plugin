@@ -3,14 +3,13 @@ package OpenWeatherMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.json.JsonObject;
 import java.net.MalformedURLException;
 
 import static junit.framework.TestCase.assertTrue;
 
 public class CurrentForecastTest {
 
-    private CurrentForecast currentForecast;
+    private CurrentForecast currentForecast = null;
 
     @Before
     public void setupObject(){
