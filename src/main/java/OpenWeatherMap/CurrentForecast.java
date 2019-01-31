@@ -16,6 +16,7 @@ public class CurrentForecast implements JavaJsonObject {
     private Weather weather;
     private Wind wind;
     private Main main;
+    private int visibility;
     private JsonObject currentForecast;
 
     @Override
@@ -26,6 +27,7 @@ public class CurrentForecast implements JavaJsonObject {
         weather = (Weather) new Weather().build(jsonObject);
         main = (Main) new Main().build(jsonObject);
         wind = (Wind) new Wind().build(jsonObject);
+        visibility = currentForecast.getJsonNumber("visibility").intValue();
         name = currentForecast.getJsonString("name").getString();
         epochTime = currentForecast.getJsonNumber("dt").longValue();
         return this;
@@ -67,6 +69,10 @@ public class CurrentForecast implements JavaJsonObject {
 
     public Main getMain() {
         return main;
+    }
+
+    public int getVisibility() {
+        return visibility;
     }
 
     public JsonObject getCurrentForecast() {
