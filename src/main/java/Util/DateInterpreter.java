@@ -53,7 +53,7 @@ public class DateInterpreter {
 
     public int getDayOfMonth(){ return  calendar.get(Calendar.DAY_OF_MONTH);}
 
-    public int getHour(){ return calendar.get(Calendar.HOUR);}
+    public int getHour(){ return calendar.get(Calendar.HOUR_OF_DAY);}
 
     public int getMinutes(){ return calendar.get(Calendar.MINUTE);}
 
