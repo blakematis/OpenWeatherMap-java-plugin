@@ -26,6 +26,11 @@ public class OpenWeatherMapUtil {
         return new City().build(jsonReply(API_URL));
     }
 
+    /*
+    public static Temperature buildTemperature(String API_URL, int index) throws MalformedURLException {
+        return (Temperature) new Temperature().build(jsonReply(API_URL),)
+    }*/
+
     public static Weather buildWeather(String API_URL) throws MalformedURLException {
         return (Weather) new Weather().build(jsonReply(API_URL));
     }

@@ -13,7 +13,7 @@ public class City implements JavaJsonObject {
     public City(){
     }
 
-    public City(int id, String name, double lon, double lat, String country){
+    public City(JsonObject jsonObject){
         this.id = id;
         this.name = name;
         this.coord = new Coord(lon, lat);
