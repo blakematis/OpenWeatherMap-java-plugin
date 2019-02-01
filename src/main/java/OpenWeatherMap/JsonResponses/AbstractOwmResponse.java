@@ -1,4 +1,6 @@
-package OpenWeatherMap;
+package OpenWeatherMap.JsonResponses;
+
+import OpenWeatherMap.OpenWeatherMapUtil;
 
 import javax.json.JsonObject;
 import java.net.MalformedURLException;

@@ -1,4 +1,7 @@
-package OpenWeatherMap;
+package OpenWeatherMap.JsonResponses;
+
+import OpenWeatherMap.JsonData.City;
+import OpenWeatherMap.JsonData.DailyForecast;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -9,7 +12,6 @@ import java.util.List;
 public class DailyForecastOwmResponse extends AbstractOwmResponse {
 
     private static final String JSON_LIST = "list";
-    private static final String JSON_DT = "dt";
 
     private final City city;
     private final List<DailyForecast> dailyForecasts;

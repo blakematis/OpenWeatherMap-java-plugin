@@ -1,6 +1,7 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import OpenWeatherMap.JsonData.Weather;
 import Util.DateInterpreter;
 
 import javax.json.JsonArray;

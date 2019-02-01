@@ -1,4 +1,4 @@
-package OpenWeatherMap;
+package OpenWeatherMap.JsonData;
 
 import JSON.AbstractJsonObj;
 

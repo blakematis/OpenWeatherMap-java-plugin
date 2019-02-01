@@ -1,5 +1,6 @@
 package OpenWeatherMap;
 
+import OpenWeatherMap.JsonData.Weather;
 import org.junit.Before;
 import org.junit.Test;
 
