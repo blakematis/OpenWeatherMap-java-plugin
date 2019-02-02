@@ -1,13 +1,12 @@
 package OpenWeatherMap.JsonData;
 
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
 import Util.DateInterpreter;
 
 import javax.json.JsonObject;
 
 import java.time.LocalDateTime;
 
-public class Sys extends AbstractOwmJsonObj{
+public class Sys extends OwmJsonObj {
 
     public static final String JSON_COUNTRY = "country";
     public static final String JSON_SUNRISE = "sunrise";

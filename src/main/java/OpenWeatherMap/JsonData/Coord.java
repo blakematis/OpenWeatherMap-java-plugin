@@ -2,7 +2,7 @@ package OpenWeatherMap.JsonData;
 
 import javax.json.JsonObject;
 
-public class Coord extends AbstractOwmJsonObj {
+public class Coord extends OwmJsonObj {
 
     private static final String JSON_LON = "lon";
     private static final String JSON_LAT = "lat";

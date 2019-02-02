@@ -8,7 +8,7 @@ import javax.json.JsonObject;
 /**
  * Daily forecast must be used with the daily? request for OpenWeatherMap
  */
-public class DailyForecast extends AbstractOwmJsonObj implements JavaJsonObject{
+public class DailyForecast extends OwmJsonObj implements JavaJsonObject{
 
     public static final String JSON_DT = "dt";
     public static final String JSON_TEMP = "temp";

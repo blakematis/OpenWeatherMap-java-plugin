@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DailyForecastOwmResponse extends AbstractOwmResponse {
+public class DailyForecastOwmResponse extends OwmResponse {
 
     private static final String JSON_LIST = "list";
 

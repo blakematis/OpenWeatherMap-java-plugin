@@ -2,7 +2,7 @@ package OpenWeatherMap.JsonData;
 
 import javax.json.*;
 
-public class City extends AbstractOwmJsonObj{
+public class City extends OwmJsonObj {
 
     public static final String JSON_ID = "id";
     public static final String JSON_NAME = "name";

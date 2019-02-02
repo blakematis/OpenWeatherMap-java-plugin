@@ -4,10 +4,10 @@ import JSON.AbstractJsonObj;
 
 import javax.json.JsonObject;
 
-public abstract class AbstractOwmJsonObj  extends AbstractJsonObj{
+public abstract class OwmJsonObj extends AbstractJsonObj{
 
 
-    public AbstractOwmJsonObj(JsonObject jsonObject) {
+    public OwmJsonObj(JsonObject jsonObject) {
         super(jsonObject);
     }
 }

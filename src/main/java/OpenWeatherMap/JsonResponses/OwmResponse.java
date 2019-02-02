@@ -5,7 +5,7 @@ import OpenWeatherMap.OpenWeatherMapUtil;
 import javax.json.JsonObject;
 import java.net.MalformedURLException;
 
-public abstract class AbstractOwmResponse {
+public abstract class OwmResponse {
 
     private static final String JSON_COD = "cod";
     private static final String JSON_MESSAGE = "message";
@@ -17,12 +17,17 @@ public abstract class AbstractOwmResponse {
     private final double message;
     private final int cnt;
 
-    public AbstractOwmResponse(String url) throws MalformedURLException{
+    public OwmResponse(String url) throws MalformedURLException{
         this.url = url;
         this.jsonRespnse = OpenWeatherMapUtil.jsonReply(url);
 
         this.cod = jsonRespnse.getJsonString(JSON_COD).getString();
-        this.message = jsonRespnse.getJsonNumber(JSON_MESSAGE).doubleValue();
+        if(jsonRespnse.getJsonNumber(JSON_MESSAGE) != null) {
+            this.message = jsonRespnse.getJsonNumber(JSON_MESSAGE).doubleValue();
+        }else{
+            this.message = 0;
+        }
+
         if(jsonRespnse.getJsonNumber(JSON_CNT) != null) {
             this.cnt = jsonRespnse.getJsonNumber(JSON_CNT).intValue();
         }else{

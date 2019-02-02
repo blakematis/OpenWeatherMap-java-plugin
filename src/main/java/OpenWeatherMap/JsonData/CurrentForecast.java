@@ -1,18 +1,12 @@
 package OpenWeatherMap.JsonData;
 
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
-import OpenWeatherMap.JsonData.Coord;
-import OpenWeatherMap.JsonData.Sys;
-import OpenWeatherMap.JsonData.Weather;
-import OpenWeatherMap.Main;
-import OpenWeatherMap.Wind;
 import Util.DateInterpreter;
 
 
 import javax.json.JsonObject;
 import java.time.LocalDateTime;
 
-public class CurrentForecast extends AbstractOwmJsonObj {
+public class CurrentForecast extends OwmJsonObj {
 
     private static final String JSON_COORD = "coord";
     private static final String JSON_SYS = "sys";

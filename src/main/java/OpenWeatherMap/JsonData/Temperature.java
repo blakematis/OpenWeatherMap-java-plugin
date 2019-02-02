@@ -6,7 +6,7 @@ import javax.json.JsonObject;
 /**
  * Temperature specifically gets used when using the daily? query.
  */
-public class Temperature extends AbstractOwmJsonObj {
+public class Temperature extends OwmJsonObj {
 
     public static final String JSON_DAY = "day";
     public static final String JSON_MIN = "min";

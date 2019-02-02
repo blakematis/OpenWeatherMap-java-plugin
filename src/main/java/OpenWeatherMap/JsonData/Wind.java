@@ -1,11 +1,8 @@
-package OpenWeatherMap;
-
-import JSON.JavaJsonObject;
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
+package OpenWeatherMap.JsonData;
 
 import javax.json.*;
 
-public class Wind extends AbstractOwmJsonObj {
+public class Wind extends OwmJsonObj {
 
     private static final String JSON_SPEED = "speed";
     private static final String JSON_DEG = "deg";

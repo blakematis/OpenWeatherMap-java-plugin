@@ -1,11 +1,8 @@
-package OpenWeatherMap;
-
-import JSON.JavaJsonObject;
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
+package OpenWeatherMap.JsonData;
 
 import javax.json.JsonObject;
 
-public class Main extends AbstractOwmJsonObj{
+public class Main extends OwmJsonObj {
 
     public static final String JSON_TEMP = "temp";
     public static final String JSON_TEMP_MIN = "temp_min";

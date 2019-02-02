@@ -4,9 +4,9 @@ import JSON.AbstractJsonArray;
 
 import javax.json.JsonArray;
 
-public class AbstractOwmJsonArray extends AbstractJsonArray {
+public class OwmJsonArray extends AbstractJsonArray {
 
-    public AbstractOwmJsonArray(JsonArray jsonArray) {
+    public OwmJsonArray(JsonArray jsonArray) {
         super(jsonArray);
     }
 }

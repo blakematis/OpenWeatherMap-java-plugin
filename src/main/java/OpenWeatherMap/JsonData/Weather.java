@@ -4,7 +4,7 @@ import OpenWeatherMap.ConditionCodes;
 
 import javax.json.JsonArray;
 
-public class Weather extends AbstractOwmJsonArray {
+public class Weather extends OwmJsonArray {
 
     public static final String JSON_ID = "id";
     public static final String JSON_MAIN = "main";

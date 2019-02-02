@@ -1,13 +1,8 @@
 package OpenWeatherMap.JsonData;
 
-import JSON.JSONReader;
-import JSON.JavaJsonObject;
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
-
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 
-public class Clouds extends AbstractOwmJsonObj{
+public class Clouds extends OwmJsonObj {
 
     public static String JSON_ALL = "all";
 
