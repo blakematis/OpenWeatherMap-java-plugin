@@ -1,8 +1,5 @@
 package OpenWeatherMap.JsonData;
 
-import OpenWeatherMap.Coord;
-import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
-
 import javax.json.*;
 
 public class City extends AbstractOwmJsonObj{

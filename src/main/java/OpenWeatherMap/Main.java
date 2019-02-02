@@ -1,96 +1,52 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
 
 import javax.json.JsonObject;
 
-public class Main implements JavaJsonObject {
+public class Main extends AbstractOwmJsonObj{
 
-    private double temp;
-    private double tempMin;
-    private double tempMax;
-    private int humidity;
-    private int pressure;
-    private JsonObject main;
+    public static final String JSON_TEMP = "temp";
+    public static final String JSON_TEMP_MIN = "temp_min";
+    public static final String JSON_TEMP_MAX = "temp_max";
+    public static final String JSON_HUMIDITY = "humidity";
+    public static final String JSON_PRESSURE = "pressure";
 
-    public Main(){
 
-    }
+    private final double temp;
+    private final double tempMin;
+    private final double tempMax;
+    private final int humidity;
+    private final int pressure;
 
-    public Main(JsonObject main){
-        this.main = main;
-    }
-
-    public Main(double temp, double tempMin,
-                double tempMax, int humidity, int pressure){
-
-        this.temp = temp;
-        this.tempMin = tempMin;
-        this.tempMax = tempMax;
-        this.humidity = humidity;
-        this.pressure = pressure;
-
-    }
-
-    @Override
-    public JavaJsonObject build(JsonObject jsonObject) {
-        main = jsonObject.getJsonObject("main");
-        setTemp(main.getJsonNumber("temp").doubleValue());
-        setHumidity(main.getJsonNumber("humidity").intValue());
-        setPressure(main.getJsonNumber("pressure").intValue());
-        setTempMin(main.getJsonNumber("temp_min").doubleValue());
-        setTempMax(main.getJsonNumber("temp_max").doubleValue());
-
-        return this;
-    }
-
-    @Override
-    public JsonObject buildJson() {
-        return null;
+    public Main(JsonObject jsonObject){
+        super(jsonObject);
+        this.temp = this.getJsonObject().getJsonNumber(JSON_TEMP).doubleValue();
+        this.tempMin = this.getJsonObject().getJsonNumber(JSON_TEMP_MIN).doubleValue();
+        this.tempMax = this.getJsonObject().getJsonNumber(JSON_TEMP_MAX).doubleValue();
+        this.humidity = this.getJsonObject().getJsonNumber(JSON_HUMIDITY).intValue();
+        this.pressure = this.getJsonObject().getJsonNumber(JSON_PRESSURE).intValue();
     }
 
     public double getTemp() {
         return temp;
     }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
-    }
-
     public double getTempMin() {
         return tempMin;
-    }
-
-    public void setTempMin(double tempMin) {
-        this.tempMin = tempMin;
     }
 
     public double getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(double tempMax) {
-        this.tempMax = tempMax;
-    }
-
     public int getHumidity() {
         return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
     }
 
     public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
-        this.pressure = pressure;
-    }
-
-    @Override
-    public String toString(){
-        return main.toString();
-    }
 }

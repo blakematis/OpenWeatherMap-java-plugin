@@ -1,70 +1,30 @@
 package OpenWeatherMap;
 
 import JSON.JavaJsonObject;
+import OpenWeatherMap.JsonData.AbstractOwmJsonObj;
 
 import javax.json.*;
 
-public class Wind implements JavaJsonObject {
-    private double speed;
-    private double deg;
-    private int index;
+public class Wind extends AbstractOwmJsonObj {
 
-    public Wind(){ }
+    private static final String JSON_SPEED = "speed";
+    private static final String JSON_DEG = "deg";
 
-    public Wind(double speed, double deg){
-        this.speed = speed;
-        this.deg = deg;
+    private final double speed;
+    private final double deg;
+
+    public Wind(JsonObject jsonObject){
+        super(jsonObject);
+        this.speed = this.getJsonObject().getJsonNumber(JSON_SPEED).doubleValue();
+        this.deg = this.getJsonObject().getJsonNumber(JSON_DEG).doubleValue();
     }
-
-    public void setSpeed(double speed){ this.speed = speed; }
 
     public double getSpeed() {
         return speed;
     }
 
-    public void setDeg(double deg){ this.deg = deg; }
-
     public double getDeg(){
         return deg;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    @Override
-    public JavaJsonObject build(JsonObject jsonObject) {
-        JsonObject windJsonObj =  jsonObject.getJsonObject("wind");
-
-        //Speed
-        setSpeed(windJsonObj.getJsonNumber("speed").doubleValue());
-
-        //Degree
-        setDeg(windJsonObj.getJsonNumber("deg").doubleValue());
-
-
-
-        return this;
-    }
-
-    @Override
-    public JsonObject buildJson() {
-        return Json.createObjectBuilder().add("speed", speed)
-                .add("deg", deg).build();
-    }
-
-    public JavaJsonObject build(JsonObject jsonObject, int index){
-        setIndex(index);
-        JsonArray list = jsonObject.getJsonArray("list");
-        JsonObject main = list.getJsonObject(index);
-        return build(main);
-    }
-
-    public String toString(){
-        return buildJson().toString();
-    }
 }
