@@ -9,6 +9,15 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * DailyForecastOwmResponse creates a response in Java of daily forecast data
+ * from 1-16 total days of DailyForecasts from OpenWeatherMap's JSON response.
+ *
+ * @Author: Blake Matis
+ * @Company: EnerDapt Inc.
+ * @Date_Created: 2/1/2019
+ */
 public class DailyForecastOwmResponse extends OwmResponse {
 
     private static final String JSON_LIST = "list";

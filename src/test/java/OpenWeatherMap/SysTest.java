@@ -15,12 +15,6 @@ public class SysTest {
 
     @Before
     public void setupObject(){
-        try {
-            JsonObject jsonObject = OpenWeatherMapUtil.jsonReply("https://samples.openweathermap.org/data/2.5/weather?zip=95610&appid=b6907d289e10d714a6e88b30761fae22");
-            sys = (Sys) new Sys().build(jsonObject);
-        }catch (MalformedURLException e){
-            e.printStackTrace();
-        }
     }
 
     @Test

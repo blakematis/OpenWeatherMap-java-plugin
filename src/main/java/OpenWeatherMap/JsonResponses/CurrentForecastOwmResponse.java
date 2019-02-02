@@ -5,6 +5,9 @@ import OpenWeatherMap.JsonData.*;
 
 import java.net.MalformedURLException;
 
+/**
+ * CurrentForecastOwmResponse creates a response in Java
+ */
 public class CurrentForecastOwmResponse extends OwmResponse {
 
     private static final String JSON_COORD = "coord";
