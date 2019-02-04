@@ -37,7 +37,11 @@ public class DailyForecast extends OwmJsonObj implements JavaJsonObject{
         this.humidity = this.getJsonObject().getJsonNumber(JSON_HUMIDITY).intValue();
         this.speed = this.getJsonObject().getJsonNumber(JSON_SPEED).doubleValue();
         this.deg = jsonObject.getJsonNumber(JSON_DEG).intValue();
-        this.rain = jsonObject.getJsonNumber(JSON_RAIN).doubleValue();
+        if(jsonObject.getJsonNumber(JSON_RAIN) != null) {
+            this.rain = jsonObject.getJsonNumber(JSON_RAIN).doubleValue();
+        }else{
+            this.rain = 0.0;
+        }
     }
 
     @Override

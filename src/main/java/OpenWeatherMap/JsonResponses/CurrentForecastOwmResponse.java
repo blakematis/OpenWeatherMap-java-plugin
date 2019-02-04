@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 /**
  * CurrentForecastOwmResponse creates a response in Java
  */
-public class CurrentForecastOwmResponse extends OwmResponse {
+public class CurrentForecastOwmResponse extends CurrentOwmResponse {
 
     private static final String JSON_COORD = "coord";
     private static final String JSON_WEATHER = "weather";

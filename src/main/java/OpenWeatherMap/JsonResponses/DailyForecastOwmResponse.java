@@ -18,7 +18,7 @@ import java.util.List;
  * @Company: EnerDapt Inc.
  * @Date_Created: 2/1/2019
  */
-public class DailyForecastOwmResponse extends OwmResponse {
+public class DailyForecastOwmResponse extends DailyOwmResponse {
 
     private static final String JSON_LIST = "list";
 
@@ -31,8 +31,12 @@ public class DailyForecastOwmResponse extends OwmResponse {
         this.dailyForecasts = new ArrayList<>();
         JsonArray listObj = getJsonRespnse().getJsonArray(JSON_LIST);
         for(int index = 0; index < getCnt(); index++){
-            JsonObject dailyForecast = listObj.getJsonObject(index);
-            dailyForecasts.add(new DailyForecast(dailyForecast));
+            try {
+                JsonObject dailyForecast = listObj.getJsonObject(index);
+                dailyForecasts.add(new DailyForecast(dailyForecast));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

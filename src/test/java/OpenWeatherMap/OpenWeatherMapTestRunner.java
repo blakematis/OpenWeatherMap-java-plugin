@@ -7,7 +7,8 @@ import org.junit.runner.notification.Failure;
 public class OpenWeatherMapTestRunner {
 
     public static void main(String[] args){
-        Result result = JUnitCore.runClasses(CurrentForeCastOwmResponseTest.class);
+        Result result = JUnitCore.runClasses(CurrentForeCastOwmResponseTest.class,
+                DailyForecastOwmResponseTest.class);
 
         for(Failure failure: result.getFailures()){
             System.out.println(failure.toString());
