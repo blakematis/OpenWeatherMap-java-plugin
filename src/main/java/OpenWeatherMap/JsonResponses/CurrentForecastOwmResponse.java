@@ -1,9 +1,11 @@
 package OpenWeatherMap.JsonResponses;
 
 import OpenWeatherMap.JsonData.*;
+import Util.DateInterpreter;
 
 
 import java.net.MalformedURLException;
+import java.time.LocalDateTime;
 
 /**
  * CurrentForecastOwmResponse creates a response in Java
@@ -48,6 +50,12 @@ public class CurrentForecastOwmResponse extends CurrentOwmResponse {
         this.id = this.getJsonRespnse().getJsonNumber(JSON_ID).intValue();
         this.name = this.getJsonRespnse().getJsonString(JSON_NAME).getString();
     }
+
+    public LocalDateTime getLastUpdatetime() {
+        DateInterpreter dt = new DateInterpreter(this.getEpochTime());
+        return dt.getLocalDatetime();
+    }
+
 
     public Coord getCoord() {
         return coord;
