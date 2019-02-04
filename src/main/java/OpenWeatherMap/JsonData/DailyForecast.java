@@ -2,13 +2,15 @@ package OpenWeatherMap.JsonData;
 
 
 import JSON.JavaJsonObject;
+import Util.DateInterpreter;
 
 import javax.json.JsonObject;
+import java.time.LocalDateTime;
 
 /**
  * Daily forecast must be used with the daily? request for OpenWeatherMap
  */
-public class DailyForecast extends OwmJsonObj implements JavaJsonObject{
+public class DailyForecast extends OwmJsonObj {
 
     public static final String JSON_DT = "dt";
     public static final String JSON_TEMP = "temp";
@@ -44,14 +46,9 @@ public class DailyForecast extends OwmJsonObj implements JavaJsonObject{
         }
     }
 
-    @Override
-    public JavaJsonObject build(JsonObject jsonObject) {
-        return null;
-    }
-
-    @Override
-    public JsonObject buildJson() {
-        return null;
+    public LocalDateTime getLastUpdatetime() {
+        DateInterpreter dt = new DateInterpreter(this.getEpochTime());
+        return dt.getLocalDatetime();
     }
 
     public long getEpochTime() {
