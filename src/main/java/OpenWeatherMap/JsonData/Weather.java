@@ -20,9 +20,9 @@ public class Weather extends OwmJsonArray {
     public Weather(JsonArray jsonArray){
         super(jsonArray);
         this.id = this.getJsonArray().getJsonObject(0).getInt(JSON_ID);
-        this.main = this.getJsonArray().getJsonObject(1).getString(JSON_MAIN);
-        this.description = this.getJsonArray().getJsonObject(2).getString(JSON_DESCRIPTION);
-        this.iconCode = this.getJsonArray().getJsonObject(3).getString(JSON_ICON_CODE);
+        this.main = this.getJsonArray().getJsonObject(0).getJsonString(JSON_MAIN).getString();
+        this.description = this.getJsonArray().getJsonObject(0).getJsonString(JSON_DESCRIPTION).getString();
+        this.iconCode = this.getJsonArray().getJsonObject(0).getJsonString(JSON_ICON_CODE).getString();
         this.conditionCodes = ConditionCodes.codeFromId(this.id);
     }
 

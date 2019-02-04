@@ -1,6 +1,7 @@
 package OpenWeatherMap;
 
 import OpenWeatherMap.JsonData.CurrentForecast;
+import OpenWeatherMap.JsonResponses.CurrentForecastOwmResponse;
 import org.junit.Before;
 import org.junit.Test;
 

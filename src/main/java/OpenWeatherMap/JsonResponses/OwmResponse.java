@@ -13,7 +13,7 @@ public abstract class OwmResponse {
 
     private final String url;
     private final JsonObject jsonRespnse;
-    private final String cod;
+    private final int cod;
     private final double message;
     private final int cnt;
 
@@ -21,7 +21,7 @@ public abstract class OwmResponse {
         this.url = url;
         this.jsonRespnse = OpenWeatherMapUtil.jsonReply(url);
 
-        this.cod = jsonRespnse.getJsonString(JSON_COD).getString();
+        this.cod = jsonRespnse.getJsonNumber(JSON_COD).intValue();
         if(jsonRespnse.getJsonNumber(JSON_MESSAGE) != null) {
             this.message = jsonRespnse.getJsonNumber(JSON_MESSAGE).doubleValue();
         }else{
@@ -55,7 +55,7 @@ public abstract class OwmResponse {
         return jsonRespnse;
     }
 
-    public String getCod() {
+    public int getCod() {
         return cod;
     }
 

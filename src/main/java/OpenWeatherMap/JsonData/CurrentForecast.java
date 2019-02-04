@@ -6,6 +6,7 @@ import Util.DateInterpreter;
 import javax.json.JsonObject;
 import java.time.LocalDateTime;
 
+@Deprecated
 public class CurrentForecast extends OwmJsonObj {
 
     private static final String JSON_COORD = "coord";
